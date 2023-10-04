@@ -1,0 +1,207 @@
+.donorContainer {
+  width: 100%;
+  margin: 0 auto;
+  background-color: #015249;
+  padding: 1rem 0;
+
+  p {
+    text-align: center;
+    font-weight: 700;
+    color: #fff;
+    font-size: 24px;
+  }
+
+  .btnsContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+
+    .btnsWrapper {
+      display: flex;
+      gap: 20px;
+
+      @media only screen and (max-width: 768px) {
+        // flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .btn {
+        cursor: pointer;
+        padding: 0 15px;
+        border: none;
+        border-radius: 5px;
+        height: 25px;
+        background-color: #fff;
+        color: #015249;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        @media only screen and (max-width: 768px) {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .modalContainer {
+    width: 300px;
+    height: auto;
+    background-color: #fff;
+    padding: 4rem 1rem;
+    position: fixed;
+    z-index: 999;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+
+    i {
+      color: #015249;
+      font-size: 20px;
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+
+    .modalWrapper {
+      p {
+        color: #015249;
+      }
+
+      input,
+      select,
+      option {
+        width: 100%;
+        height: 30px;
+        border: 1px solid #015249;
+        border-radius: 5px;
+        padding: 0 10px;
+        margin-bottom: 10px;
+      }
+
+      button {
+        width: 100%;
+        height: 30px;
+        border: none;
+        border-radius: 5px;
+        background-color: #015249;
+        color: #fff;
+        font-weight: 700;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .donorWrapper {
+    max-width: 1180px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    display: flex;
+    gap: 20px;
+    justify-content: space-evenly;
+    text-align: left;
+
+    @media only screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+
+    > div {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+
+    .donorName {
+      color: #f5f5f5;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .donorType {
+      color: #f5f5f5;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .donorBtns {
+      display: flex;
+      justify-content: space-around;
+
+      .donorBtn {
+        padding: 0 15px;
+        border: none;
+        border-radius: 5px;
+        height: 25px;
+        background-color: #fff;
+        color: #015249;
+      }
+    }
+  }
+}
+
+.doadorSteps {
+  position: relative;
+}
+
+.doadorSteps hr {
+  position: absolute;
+  width: 100%;
+  border: 3px solid #015249;
+  top: 49px;
+}
+
+.doadorStepsContainer {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2rem 1rem;
+  z-index: 2;
+  position: relative;
+}
+
+.doadorSteps i {
+  width: 28px;
+  height: 28px;
+  background-color: #f1f1f1;
+  border-radius: 48%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.doadorSteps p {
+  color: black;
+  font-size: 15px;
+  font-family: Poppins;
+  font-weight: 400;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.btnContainer {
+  max-width: 1180px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media only screen and (max-width: 768px) {
+    margin-bottom: 75px;
+  }
+}

@@ -1,0 +1,259 @@
+.infoSection {
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    h1 {
+        text-align: center;
+        font-size: 32px;
+        color: #015249;
+        padding: 2rem 0;
+    }
+
+    .donorInfo {
+        padding: 0 4rem;
+        .donorTitle {
+            font-size: 32px;
+            font-weight: 800;
+            color: #015249;
+        }
+        .donorText {
+            font-size: 18px;
+            font-weight: 400;
+            color: #000;
+            text-align: justify;
+        }
+    }
+    .receptorInfo {
+        padding: 0 4rem;
+        .receptorTitle {
+            font-size: 32px;
+            font-weight: 800;
+            color: #015249;
+            text-align: right;
+        }
+        .receptorText {
+            font-size: 18px;
+            font-weight: 400;
+            color: #000;
+            text-align: justify;
+        }
+    }
+
+    .causeContainer {
+        background-color: #B4DBC0;
+        padding: 5rem 5rem;
+
+        .causeTitle {
+            font-size: 50px;
+            font-weight: 800;
+            color: #015249;
+            text-align: center;
+            padding: 2rem;
+
+            @media only screen and (max-width: 768px) {
+                font-size: 32px;
+                padding: 0;
+            }
+        }
+
+        .causeCardContainer {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+
+            @media only screen and (max-width: 768px) {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .causeCard {
+                width: 300px;
+                height: 300px;
+                background-color: #015249;
+                color: #fff;
+                font-size: 22px;
+                font-weight: 700;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 10px 2rem;
+                text-align: center;
+                border-radius: 10px;
+                flex-direction: column;
+                gap: 10px;
+
+                @media only screen and (max-width: 768px) {
+                    font-size: 20px;
+                }
+
+                .cardText {
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+
+    .solutionContainer {
+        background-color: #015249;
+        padding: 5rem 5rem;
+
+        @media only screen and (max-width: 768px) {
+            padding: 5rem 2rem;
+        }
+
+        .solutionTitle {
+            font-size: 32px;
+            font-weight: 800;
+            color: #fff;
+            text-align: left;
+        }
+
+        .solutionWrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            .solutionText {
+                font-size: 18px;
+                font-weight: 600;
+                color: #B4DBC0;
+                text-align: justify;
+                padding: 2rem 0;
+
+                em {
+                    color: lightblue;
+                }
+            }
+
+            .solutionCardContainer {
+                display: flex;
+                gap: 30px;
+
+                @media only screen and (max-width: 768px) {
+                    flex-direction: column;
+                }
+
+                .solutionCard {
+                    color: #015249;
+                    background-color: #B4DBC0;
+                    font-size: 18px;
+                    font-weight: 700;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 10px 2rem;
+                    text-align: center;
+                    border-radius: 10px;
+                }
+            }
+        }
+    }
+
+
+    .vidaDayInfo {
+        padding: 3rem 0;
+        background-color: #B4DBC0;
+
+            .vidaInfoTitle {
+                font-size: 40px;
+                font-weight: 700;
+                color: #015249;
+                text-align: center;
+
+                @media only screen and (max-width: 768px) {
+                    font-size: 32px;
+                    padding: 0 2rem;
+                }
+            }
+            .text {
+                font-size: 20px;
+            }
+
+            .infoCardContainer {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 20px;
+                padding: 5rem 0 0 0;
+
+                @media only screen and (max-width: 768px) {
+                    flex-wrap: wrap;
+                    padding: 3rem 0.10rem;
+                }
+
+                .card {
+                    width: 200px;
+                    height: 150px;
+                    border-radius: 10px;
+                    text-align: center;
+
+                    .cardTitle {
+                        font-size: 20px;
+                        font-weight: 700;
+                        color: #015249;
+                    }
+
+                    .cardText {
+                        font-size: 16px;
+                        color: #000000;
+                        font-weight: 700;
+                    }
+
+                    hr {
+                        border-bottom: 2px solid ;
+                    }
+                }
+            }
+
+        .vidaDayText {
+            padding: 2rem 1rem;
+            background-color: #015249;
+            color: #B4DBC0;
+            text-align: justify;
+        }
+
+        .moreBtn {
+            width: 166px;
+            height: 28px;
+            background-color: #015249;
+            color: #fff;
+            font-weight: 700;
+            position: relative;
+            border: none;
+            border-radius: 5px;
+            margin-top: 5px;
+            left: 86%;
+            cursor: pointer;
+        }
+    }
+
+    .testmonialsContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        gap: 50px;
+
+        .testmonialsTitle {
+            color: #015249;
+            font-size: 16px;
+            font-weight: 800;
+        }
+    }
+
+    .contact {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 3rem 0;
+        cursor: pointer;
+    }
+}
