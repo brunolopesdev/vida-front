@@ -35,7 +35,7 @@ export const Header = () => {
             <a href="/paciente">Minha área</a>
           </li>
           <li>
-            <a href="/forum">Fórum</a>
+            <a href="/forum">Blog</a>
           </li>
           {loggedUser.length === 0 && (
             <li>
