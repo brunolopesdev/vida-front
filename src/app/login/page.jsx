@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation'
 import { useGlobalContext } from "../../../helpers/context";
 import styles from "./styles.module.scss";
 
-export default function () {
+export default function LoginPage() {
   const [name, setName] = useState("");
   // const [email, setEmail] = useState("");
   const { onSubmit } = useGlobalContext();
