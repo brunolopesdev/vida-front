@@ -16,6 +16,14 @@ export const Header = () => {
     setMenuOpen(!menuOpen);
   }
 
+  useEffect(() => {
+    if (window.innerWidth <= 768) {
+      setIsMobile(true);
+    }
+  }, []);
+
+  if(!loggedUser) return
+  
   const deskMenu = (
     <>
       <nav>
@@ -29,7 +37,7 @@ export const Header = () => {
           <li>
             <a href="/forum">Fórum</a>
           </li>
-          {!loggedUser && (
+          {loggedUser.length === 0 && (
             <li>
               <a href="/forum">Cadastro</a>
             </li>
@@ -55,7 +63,7 @@ export const Header = () => {
             <li>
               <a href="/forum">Blog</a>
             </li>
-            {!loggedUser && (
+            {loggedUser.length === 0 && (
               <li>
                 <a href="/forum">Cadastro</a>
               </li>
@@ -64,13 +72,7 @@ export const Header = () => {
         </div>
       )}
     </>
-  );
-
-  useEffect(() => {
-    if (window.innerWidth <= 768) {
-      setIsMobile(true);
-    }
-  }, [isMobile]);
+  );  
 
   return (
     <header className={styles.headerContainer}>
@@ -94,10 +96,10 @@ export const Header = () => {
           />
         </a>
         <p>
-          {loggedUser ? (
-            loggedUser.resource.name[0].given[0]
-          ) : (
+          {loggedUser.length === 0 ? (
             <a href="/login">Entrar</a>
+            ) : (
+            loggedUser?.resource?.name[0]?.given[0]
           )}
         </p>
       </div>
