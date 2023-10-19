@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useGlobalContext } from "../../helpers/context";
 import { Icon } from "@iconify/react";
 import { useEffect, useState } from "react";
+import { Avatar, User } from "@nextui-org/react";
 
 export const Header = () => {
   const { loggedUser } = useGlobalContext();
@@ -14,7 +15,7 @@ export const Header = () => {
 
   const handleMenu = () => {
     setMenuOpen(!menuOpen);
-  }
+  };
 
   useEffect(() => {
     if (window.innerWidth <= 768) {
@@ -22,8 +23,8 @@ export const Header = () => {
     }
   }, []);
 
-  if(!loggedUser) return
-  
+  if (!loggedUser) return;
+
   const deskMenu = (
     <>
       <nav>
@@ -49,10 +50,24 @@ export const Header = () => {
 
   const mobileMenu = (
     <>
-      <Icon icon="ci:hamburger-lg" color="#015249" width="30" height="30" onClick={handleMenu}/>
+      <Icon
+        icon="ci:hamburger-lg"
+        color="#015249"
+        width="30"
+        height="30"
+        onClick={handleMenu}
+      />
       {menuOpen && (
         <div className={`${styles.mobileMenu}`}>
-          <i><Icon icon="ant-design:close-outlined" color="#015249" width="30" height="30" onClick={handleMenu}/></i>
+          <i>
+            <Icon
+              icon="ant-design:close-outlined"
+              color="#015249"
+              width="30"
+              height="30"
+              onClick={handleMenu}
+            />
+          </i>
           <ul className={styles.menuItems}>
             <li>
               <a href="/">Home</a>
@@ -72,7 +87,7 @@ export const Header = () => {
         </div>
       )}
     </>
-  );  
+  );
 
   return (
     <header className={styles.headerContainer}>
@@ -86,25 +101,25 @@ export const Header = () => {
         />
       </div>
 
+      {isMobile ? mobileMenu : deskMenu}
+
       <div className={styles.userInfo}>
-        <a href="/paciente">
-          <Icon
-            icon="ant-design:user-outlined"
-            width="30"
-            height="30"
-            color="#015249"
-          />
-        </a>
         <p>
           {loggedUser.length === 0 ? (
             <a href="/login">Entrar</a>
-            ) : (
-            loggedUser?.resource?.name[0]?.given[0]
+          ) : (
+            <a href="/paciente">
+              <User
+                name={loggedUser?.resource?.name[0]?.given[0]}
+                description="Paciente"
+                avatarProps={{
+                  src: "https://i.pravatar.cc/150?u=a04258114e29026702d",
+                }}
+              />
+            </a>
           )}
         </p>
       </div>
-
-      {isMobile ? mobileMenu : deskMenu}
     </header>
   );
 };

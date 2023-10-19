@@ -1,6 +1,7 @@
 import styles from "./styles.module.scss";
 import logo from "../../public/logo.png";
 import Image from "next/image";
+import Testmonials from "./Testmonials";
 
 export const Info = () => {
   return (
@@ -121,7 +122,7 @@ export const Info = () => {
       <article className={styles.testmonialsContainer}>
         <p className={styles.testmonialsTitle}>DEPOIMENTOS</p>
 
-        <p>nenhum depoimento encontrado...</p>
+        <Testmonials />
       </article>
 
       <article className={styles.contact}>

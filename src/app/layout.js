@@ -3,6 +3,7 @@
 import { FloatMenu } from "../../components/FloatMenu";
 import { Header } from "../../components/Header";
 import { Inter } from "next/font/google";
+import { NextUIProvider } from "@nextui-org/react";
 
 import "./globals.css";
 import { GlobalContextProvider } from "../../helpers/context";
@@ -19,9 +20,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <GlobalContextProvider>
-          <Header />
-          {children}
-          <FloatMenu />
+          <NextUIProvider>
+            <Header />
+            {children}
+            <FloatMenu />
+          </NextUIProvider>
         </GlobalContextProvider>
       </body>
     </html>

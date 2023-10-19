@@ -8,6 +8,8 @@ import { Icon } from "@iconify/react";
 import { useGlobalContext } from "../../../helpers/context";
 import { AppointmentsModal } from "../../../components/AppointmentsModal";
 import axios from "axios";
+import { Progress } from "@nextui-org/react";
+import { PractitionersModal } from "../../../components/PractModal";
 
 const customStyles = {
   content: {
@@ -285,6 +287,7 @@ export default function DonorPage() {
         {modalIsOpen.newAppointmentModal && newAppointmentModal}
 
         {/* <AppointmentsModal /> */}
+        <PractitionersModal />
 
         <div className={styles.btnsContainer}>
           <div className={styles.btnsWrapper}>
@@ -308,7 +311,8 @@ export default function DonorPage() {
         </div>
       </section>
 
-      <section className={styles.doadorSteps}>
+      <section className={`${styles.doadorSteps} p-4`}>
+        <Progress aria-label="Loading..." value={10} className="w-full" color="success"/>
         <div className={styles.doadorStepsContainer}>
           <div className={styles.step}>
             <i>
@@ -335,7 +339,7 @@ export default function DonorPage() {
             <p>doação</p>
           </div>
         </div>
-        <hr />
+        {/* <hr /> */}
       </section>
 
       <section className={styles.btnContainer}>
