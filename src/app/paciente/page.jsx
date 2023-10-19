@@ -10,6 +10,7 @@ import { AppointmentsModal } from "../../../components/AppointmentsModal";
 import axios from "axios";
 import { Progress } from "@nextui-org/react";
 import { PractitionersModal } from "../../../components/PractModal";
+import Link from "next/link";
 
 const customStyles = {
   content: {
@@ -23,7 +24,8 @@ const customStyles = {
 };
 
 export default function DonorPage() {
-  const { loggedUser } = useGlobalContext();
+  const { loggedUser, handleLogout } = useGlobalContext();
+  
   const [modalIsOpen, setIsOpen] = useState({
     dataModal: false,
     newAppointmentModal: false,
@@ -72,7 +74,7 @@ export default function DonorPage() {
       },
       {
         actor: {
-          reference: "Patient/" + loggedUser?.resource.id,
+          reference: "Patient/" + loggedUser?.resource.id && loggedUser?.resource.id,
         },
         status: "accepted",
         type: [
@@ -257,8 +259,10 @@ export default function DonorPage() {
           alignItems: "center",
           padding: "5rem",
         }}
+        className="flex-col"
       >
         <h1>Carregando...</h1>
+        <Link href="/">Voltar para home</Link>
       </div>
     );
   }
@@ -306,6 +310,14 @@ export default function DonorPage() {
                 height="20"
               />
               agendar consulta
+            </button>
+            <button className={styles.btn} onClick={() => handleLogout()}>
+              <Icon
+                icon="material-symbols:logout"
+                width="20"
+                height="20"
+              />
+              logout
             </button>
           </div>
         </div>

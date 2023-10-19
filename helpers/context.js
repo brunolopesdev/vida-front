@@ -1,8 +1,8 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { redirect } from 'next/navigation'
 import axios from "axios";
-import { redirect } from "next/navigation";
 
 // Criando o contexto
 export const GlobalContext = createContext(undefined);
@@ -23,14 +23,24 @@ export const GlobalContextProvider = ({ children }) => {
     setOpenPract(!openPract);
   };
 
-  const onSubmit = async (name) => {
+  const handleLogout = () => {
+    setLoggedUser(null);
     localStorage.clear();
-    if (name) {
+
+    console.log("loggedUser", loggedUser)
+
+    window.location.href = "/";
+  }
+
+  const onSubmit = async (email) => {
+    console.log("email", email)
+    localStorage.clear();
+    if (email) {
       const { data } = await axios.get("https://vida-api.vercel.app/patients");
 
       const findUser = data.find(
         (patient) =>
-          patient.resource.name[0].given[0].toLowerCase() === name.toLowerCase()
+          patient?.resource?.telecom[2]?.value.toLowerCase() === email.toLowerCase()
       );
 
       localStorage.setItem("loggedUser", JSON.stringify(findUser));
@@ -77,6 +87,7 @@ export const GlobalContextProvider = ({ children }) => {
         practitioners,
         handleModalPract,
         openPract,
+        handleLogout
       }}
     >
       {children}
