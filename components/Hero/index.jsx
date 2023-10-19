@@ -53,7 +53,6 @@ export const Hero = ({ mainText, missionText }) => {
                 </h4>
               </CardHeader>
               <Image
-                removeWrapper
                 alt="Card background"
                 className="z-0 w-full h-full object-cover"
                 src={item.img}

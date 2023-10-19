@@ -27,8 +27,6 @@ export const GlobalContextProvider = ({ children }) => {
     setLoggedUser(null);
     localStorage.clear();
 
-    console.log("loggedUser", loggedUser)
-
     window.location.href = "/";
   }
 
@@ -45,7 +43,10 @@ export const GlobalContextProvider = ({ children }) => {
 
       localStorage.setItem("loggedUser", JSON.stringify(findUser));
 
-      setLoggedUser(findUser);
+      // setLoggedUser(findUser);
+
+      const userStored = JSON.parse(localStorage.getItem("loggedUser")) || [];
+      setLoggedUser(userStored);
 
       window.location.href = "/paciente";
     }
@@ -68,7 +69,11 @@ export const GlobalContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (!loggedUser) {
+    // if (!loggedUser) {
+    //   const userStored = JSON.parse(localStorage.getItem("loggedUser")) || [];
+    //   setLoggedUser(userStored);
+    // }
+    if (!loggedUser && localStorage.getItem("loggedUser") !== null) {
       const userStored = JSON.parse(localStorage.getItem("loggedUser")) || [];
       setLoggedUser(userStored);
     }

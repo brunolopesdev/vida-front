@@ -23,8 +23,6 @@ export const Header = () => {
     }
   }, []);
 
-  if (!loggedUser) return;
-
   const deskMenu = (
     <>
       <nav>
@@ -33,16 +31,11 @@ export const Header = () => {
             <a href="/">Home</a>
           </li>
           <li>
-            <a href="/paciente">Minha área</a>
-          </li>
-          <li>
             <a href="/forum">Blog</a>
           </li>
-          {loggedUser.length === 0 && (
-            <li>
-              <a href="/cadastro">Cadastro</a>
-            </li>
-          )}
+          <li>
+            <a href="/cadastro">Cadastro</a>
+          </li>
         </ul>
       </nav>
     </>
@@ -73,41 +66,58 @@ export const Header = () => {
               <a href="/">Home</a>
             </li>
             <li>
-              <a href="/paciente">Minha área</a>
-            </li>
-            <li>
               <a href="/forum">Blog</a>
             </li>
-            {loggedUser.length === 0 && (
-              <li>
-                <a href="/cadastro">Cadastro</a>
-              </li>
-            )}
+            <li>
+              <a href="/cadastro">Cadastro</a>
+            </li>
           </ul>
         </div>
       )}
     </>
   );
 
-  return (
-    <header className={styles.headerContainer}>
-      <div className={styles.headerLogo}>
-        <Image
-          src={logo}
-          width="100%"
-          height="100%"
-          alt="Vida Mais Logo"
-          className={styles.imgLogo}
-        />
-      </div>
+  if (!loggedUser) {
+    return (
+      <header className={styles.headerContainer}>
+        <div className={styles.headerLogo}>
+          <Image
+            src={logo}
+            width="100%"
+            height="100%"
+            alt="Vida Mais Logo"
+            className={styles.imgLogo}
+          />
+        </div>
 
-      {isMobile ? mobileMenu : deskMenu}
+        {isMobile ? mobileMenu : deskMenu}
 
-      <div className={styles.userInfo}>
-        <p>
-          {loggedUser.length === 0 ? (
+        <div className={styles.userInfo}>
+          <p>
             <a href="/login">Entrar</a>
-          ) : (
+          </p>
+        </div>
+      </header>
+    );
+  }
+
+  if (loggedUser) {
+    return (
+      <header className={styles.headerContainer}>
+        <div className={styles.headerLogo}>
+          <Image
+            src={logo}
+            width="100%"
+            height="100%"
+            alt="Vida Mais Logo"
+            className={styles.imgLogo}
+          />
+        </div>
+
+        {isMobile ? mobileMenu : deskMenu}
+
+        <div className={styles.userInfo}>
+          <p>
             <a href="/paciente">
               <User
                 name={loggedUser?.resource?.name[0]?.given[0]}
@@ -117,9 +127,9 @@ export const Header = () => {
                 }}
               />
             </a>
-          )}
-        </p>
-      </div>
-    </header>
-  );
+          </p>
+        </div>
+      </header>
+    );
+  }
 };

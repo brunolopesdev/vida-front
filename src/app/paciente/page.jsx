@@ -36,6 +36,7 @@ export default function DonorPage() {
     height: "",
     diseaseType: "",
   });
+  
   const [appointmentData, setAppointmentData] = useState({
     resourceType: "Appointment",
     status: "booked",
@@ -74,7 +75,7 @@ export default function DonorPage() {
       },
       {
         actor: {
-          reference: "Patient/" + loggedUser?.resource.id && loggedUser?.resource.id,
+          reference: "Patient/" + loggedUser ? loggedUser?.resource?.id : '895d44d7-3337-4fbf-9b4a-21856238b230',
         },
         status: "accepted",
         type: [
@@ -273,11 +274,11 @@ export default function DonorPage() {
         <p>Dados Pessoais</p>
         <article className={styles.donorWrapper}>
           <div className={styles.donorData}>
-            <p>Nome: {loggedUser.resource.name[0].given.join(" ")}</p>
-            <p>Celular: {loggedUser.resource.telecom[0].value}</p>
-            <p>Endereço: {loggedUser.resource.address[0].line[0]}</p>
-            <p>Bairro: {loggedUser.resource.address[0].district}</p>
-            <p>Cidade: {loggedUser.resource.address[0].city}</p>
+            <p>Nome: {loggedUser?.resource?.name[0]?.given?.join(" ")}</p>
+            <p>Celular: {loggedUser?.resource?.telecom[0]?.value}</p>
+            <p>Endereço: {loggedUser?.resource?.address[0]?.line[0]}</p>
+            <p>Bairro: {loggedUser?.resource?.address[0]?.district}</p>
+            <p>Cidade: {loggedUser?.resource?.address[0]?.city}</p>
           </div>
           <div className={styles.donorAditionalData}>
             <p>Tipo sanguíneo: {formData?.bloodType}</p>
