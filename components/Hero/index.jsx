@@ -43,7 +43,7 @@ export const Hero = ({ mainText, missionText }) => {
           // showThumbs={false}
         >
           {carouselItems.map((item, index) => (
-            <Card className="col-span-12 sm:col-span-4 h-[300px]">
+            <Card className="col-span-12 sm:col-span-4 h-[300px]" key={index}>
               <CardHeader className="absolute z-10 top-1 flex-col !items-start">
                 <p className="text-tiny text-black/60 uppercase font-bold">
                   {item.title}

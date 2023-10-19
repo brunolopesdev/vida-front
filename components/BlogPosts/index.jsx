@@ -48,8 +48,8 @@ export default function BlogPosts() {
   ];
   return (
     <section className="flex flex-wrap gap-4 p-6 justify-center align-center">
-      {blogPosts.map((post) => (
-        <Card className="max-w-[400px]">
+      {blogPosts.map((post, index) => (
+        <Card className="max-w-[400px]" key={index}>
           <CardHeader className="flex gap-3">
             <Image
               alt="nextui logo"
