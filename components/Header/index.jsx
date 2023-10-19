@@ -40,7 +40,7 @@ export const Header = () => {
           </li>
           {loggedUser.length === 0 && (
             <li>
-              <a href="/forum">Cadastro</a>
+              <a href="/cadastro">Cadastro</a>
             </li>
           )}
         </ul>
@@ -80,7 +80,7 @@ export const Header = () => {
             </li>
             {loggedUser.length === 0 && (
               <li>
-                <a href="/forum">Cadastro</a>
+                <a href="/cadastro">Cadastro</a>
               </li>
             )}
           </ul>
