@@ -45,8 +45,6 @@ export default function DonorPage() {
     }
   };
 
-
-  console.log('form', form.getValues())
   async function onSubmit(data) {
     try {
       await axios.post("https://vida-api.vercel.app/appointment", {

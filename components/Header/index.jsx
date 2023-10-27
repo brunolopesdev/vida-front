@@ -34,8 +34,17 @@ export const Header = () => {
             <a href="/forum">Blog</a>
           </li>
           <li>
-            <a href="/cadastro">Cadastro</a>
+            {loggedUser ? (
+              <a href="/paciente">Minha área</a>
+            ) : (
+              <a href="/cadastro">Cadastro</a>
+            )}
           </li>
+          {!loggedUser && (
+            <li>
+              <a href="/login">Entrar</a>
+            </li>
+          )}
         </ul>
       </nav>
     </>
@@ -88,12 +97,6 @@ export const Header = () => {
             alt="Vida Mais Logo"
             className={styles.imgLogo}
           />
-        </div>
-
-        <div className={styles.userInfo}>
-          <p>
-            <a href="/login">Entrar</a>
-          </p>
         </div>
 
         {isMobile ? mobileMenu : deskMenu}
