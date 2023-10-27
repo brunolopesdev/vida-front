@@ -8,42 +8,48 @@ import {
   Link,
 } from "@nextui-org/react";
 
+import slide1 from "../../public/hero4.jpg";
+import slide2 from "../../public/hero2.jpg";
+import slide3 from "../../public/hero5.jpg";
+import slide4 from "../../public/hero6.jpg";
+
 export default function BlogPosts() {
   const blogPosts = [
     {
-      title: "Lorem ipsum dolor sit amet",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia quasi est non, ducimus ipsam eum explicabo, impedit quaerat eius autem earum quam quisquam! Neque ullam natus itaque. Sed, porro culpa.",
-      date: "2021-09-21",
+      id: 1,
+      title:
+        "Brasil bate recorde de doadores de órgãos no primeiro semestre do ano",
+      text: "Com mais de 1,9 mil doadores efetivos, país realizou mais de 4,3 mil transplantes entre janeiro e junho, 16% a mais que no mesmo período de 2022",
+      img: slide1,
+      link: 'https://www.gov.br/saude/pt-br/assuntos/noticias/2023/agosto/brasil-bate-recorde-de-doadores-de-orgaos-no-primeiro-semestre-do-ano'
     },
     {
-      title: "Lorem ipsum dolor sit amet",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia quasi est non, ducimus ipsam eum explicabo, impedit quaerat eius autem earum quam quisquam! Neque ullam natus itaque. Sed, porro culpa.",
-      date: "2021-09-21",
+      id: 2,
+      title: "PL prevê doação presumida de órgãos no Brasil; CFM é favorável",
+      text: "Conforme projeto, todos os brasileiros seriam considerados doadores, salvo exceções.",
+      img: slide2,
+      link: 'https://www.migalhas.com.br/quentes/394251/pl-preve-doacao-presumida-de-orgaos-no-brasil-cfm-e-favoravel'
     },
     {
-      title: "Lorem ipsum dolor sit amet",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia quasi est non, ducimus ipsam eum explicabo, impedit quaerat eius autem earum quam quisquam! Neque ullam natus itaque. Sed, porro culpa.",
-      date: "2021-09-21",
+      id: 3,
+      title: "Dia Nacional da Doação de Órgãos: conscientização e desafios",
+      text: "A doação de órgãos é um gesto de solidariedade que pode mudar vidas e oferecer esperança a quem mais precisa",
+      img: slide3,
+      link: 'https://www.tre-pr.jus.br/comunicacao/noticias/2023/Setembro/dia-nacional-da-doacao-de-orgaos-conscientizacao-e-desafios'
     },
     {
-      title: "Lorem ipsum dolor sit amet",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia quasi est non, ducimus ipsam eum explicabo, impedit quaerat eius autem earum quam quisquam! Neque ullam natus itaque. Sed, porro culpa.",
-      date: "2021-09-21",
+      id: 4,
+      title: "Número de doação de órgãos alcança recorde histórico no primeiro semestre de 2023",
+      text: "Segundo o Sistema Nacional de Transplantes (SNT), o Brasil registrou mais de 1,9 mil doadores efetivos de órgãos e realizou mais de 4,3 mil transplantes entre janeiro e junho",
+      img: slide4,
+      link: 'https://brasil61.com/n/numero-de-doacao-de-orgaos-alcanca-recorde-historico-no-primeiro-semestre-de-2023-bras239441'
     },
     {
-      title: "Lorem ipsum dolor sit amet",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia quasi est non, ducimus ipsam eum explicabo, impedit quaerat eius autem earum quam quisquam! Neque ullam natus itaque. Sed, porro culpa.",
-      date: "2021-09-21",
-    },
-    {
-      title: "Lorem ipsum dolor sit amet",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia quasi est non, ducimus ipsam eum explicabo, impedit quaerat eius autem earum quam quisquam! Neque ullam natus itaque. Sed, porro culpa.",
-      date: "2021-09-21",
-    },
-    {
-      title: "Lorem ipsum dolor sit amet",
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia quasi est non, ducimus ipsam eum explicabo, impedit quaerat eius autem earum quam quisquam! Neque ullam natus itaque. Sed, porro culpa.",
-      date: "2021-09-21",
+      id: 2,
+      title: "PL prevê doação presumida de órgãos no Brasil; CFM é favorável",
+      text: "Conforme projeto, todos os brasileiros seriam considerados doadores, salvo exceções.",
+      img: slide2,
+      link: 'https://www.migalhas.com.br/quentes/394251/pl-preve-doacao-presumida-de-orgaos-no-brasil-cfm-e-favoravel'
     },
   ];
   return (
@@ -52,7 +58,7 @@ export default function BlogPosts() {
         <Card className="max-w-[400px]" key={index}>
           <CardHeader className="flex gap-3">
             <Image
-              alt="nextui logo"
+              alt={post.title}
               height={40}
               radius="sm"
               src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
@@ -69,7 +75,7 @@ export default function BlogPosts() {
           </CardBody>
           <Divider />
           <CardFooter>
-            <Link isExternal showAnchorIcon href="#">
+            <Link isExternal showAnchorIcon href={post.link}>
               Ler mais...
             </Link>
           </CardFooter>

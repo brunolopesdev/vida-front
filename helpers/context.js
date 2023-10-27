@@ -34,7 +34,7 @@ export const GlobalContextProvider = ({ children }) => {
     console.log("email", email)
     localStorage.clear();
     if (email) {
-      const { data } = await axios.get("https://vida-api.vercel.app/patients");
+      const { data } = await axios.get("http://localhost:4000/patients");
 
       const findUser = data.find(
         (patient) =>

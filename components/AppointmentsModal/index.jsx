@@ -29,8 +29,8 @@ export const AppointmentsModal = () => {
             <p className={styles.modalTitle}>Sua agenda</p>
 
             {!appointments.length && (
-              <p style={{color: '#015249'}}>
-                Carregando...
+              <p style={{color: '#015249'}} className="text-center">
+                Nenhuma consulta agendada no momento.
               </p>
             )}
 

@@ -2,6 +2,7 @@ import Image from "next/image";
 import styles from "./styles.module.scss";
 import { useGlobalContext } from "../../helpers/context";
 import { Icon } from "@iconify/react";
+import Link from "next/link";
 
 export const UtilButtons = () => {
   const { getPatientAppointments, loggedUser, handleModal, handleModalPract, getPractitioners } =
@@ -54,7 +55,7 @@ export const UtilButtons = () => {
               height="50"
               color="#015249"
             />
-            Fórum de discussão
+            <Link href="/blog" alt="Link para o blog">Blog</Link>
           </li>
         </ul>
       </article>

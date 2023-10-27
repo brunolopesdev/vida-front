@@ -2,30 +2,26 @@
 
 import { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
+import { useForm } from "react-hook-form";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 import { UtilButtons } from "../../../components/UtilButtons";
 import { Icon } from "@iconify/react";
 import { useGlobalContext } from "../../../helpers/context";
-import { AppointmentsModal } from "../../../components/AppointmentsModal";
 import axios from "axios";
 import { Progress } from "@nextui-org/react";
 import { PractitionersModal } from "../../../components/PractModal";
 import Link from "next/link";
-
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
+import { AiTwotoneAlert } from "react-icons/ai";
 
 export default function DonorPage() {
+  const form = useForm();
+  const MySwal = withReactContent(Swal)
+
   const { loggedUser, handleLogout } = useGlobalContext();
-  
+  const [possibleDonors, setPossibleDonors] = useState();
+
   const [modalIsOpen, setIsOpen] = useState({
     dataModal: false,
     newAppointmentModal: false,
@@ -36,71 +32,92 @@ export default function DonorPage() {
     height: "",
     diseaseType: "",
   });
-  
-  const [appointmentData, setAppointmentData] = useState({
-    resourceType: "Appointment",
-    status: "booked",
-    specialty: [
-      {
-        coding: [
-          {
-            system: "http://snomed.info/sct",
-            code: "394814009",
-            display: "",
-          },
-        ],
-      },
-    ],
-    description: "",
-    start: "",
-    end: "",
-    participant: [
-      {
-        actor: {
-          reference: "Practitioner/" + "d0331a52-9150-4ab8-89a4-f3553a84b27d",
-        },
-        status: "accepted",
-        type: [
-          {
-            coding: [
-              {
-                system:
-                  "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
-                code: "ATND",
-              },
-            ],
-            text: "Attendee",
-          },
-        ],
-      },
-      {
-        actor: {
-          reference: "Patient/" + loggedUser ? loggedUser?.resource?.id : '895d44d7-3337-4fbf-9b4a-21856238b230',
-        },
-        status: "accepted",
-        type: [
-          {
-            coding: [
-              {
-                system:
-                  "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
-                code: "PAT",
-              },
-            ],
-            text: "Patient",
-          },
-        ],
-      },
-    ],
-  });
 
-  const createNewAppointment = async (e) => {
-    e.preventDefault();
-    await axios.post(
-      "https://vida-api.vercel.app/appointment",
-      appointmentData
-    );
+  const fetchPossibleDonors = async () => {
+    try {
+      const { data } = await axios.get("http://localhost:4000/person");
+
+      setPossibleDonors(data);
+      console.log("data222", data);
+      console.log();
+    } catch (err) {
+      console.log(err);
+    }
   };
+
+
+  console.log('form', form.getValues())
+  async function onSubmit(data) {
+    try {
+      await axios.post("http://localhost:4000/appointment", {
+        resourceType: "Appointment",
+        status: "booked",
+        specialty: [
+          {
+            coding: [
+              {
+                system: "http://snomed.info/sct",
+                code: "394814009",
+                display: data.specialty[0].coding.display,
+              },
+            ],
+          },
+        ],
+        description: data.description,
+        start: data.start,
+        end: data.start,
+        participant: [
+          {
+            actor: {
+              reference: "Practitioner/" + "d0331a52-9150-4ab8-89a4-f3553a84b27d",
+            },
+            status: "accepted",
+            type: [
+              {
+                coding: [
+                  {
+                    system:
+                      "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                    code: "ATND",
+                  },
+                ],
+                text: "Attendee",
+              },
+            ],
+          },
+          {
+            actor: {
+              reference:
+                "Patient/" + loggedUser
+                  ? loggedUser?.resource?.id
+                  : "895d44d7-3337-4fbf-9b4a-21856238b230",
+            },
+            status: "accepted",
+            type: [
+              {
+                coding: [
+                  {
+                    system:
+                      "http://terminology.hl7.org/CodeSystem/v3-ParticipationType",
+                    code: "PAT",
+                  },
+                ],
+                text: "Patient",
+              },
+            ],
+          },
+        ],
+      });
+    } catch (err) {
+      console.log(err);
+    } finally {
+
+      MySwal.fire({
+        title: <strong>Consulta agendada!</strong>,
+        icon: 'success'
+      })
+    }
+  }
 
   function openModal() {
     setIsOpen({ dataModal: true, newAppointmentModal: false });
@@ -189,38 +206,46 @@ export default function DonorPage() {
       </i>
       <div className={styles.modalWrapper}>
         <p>Preencha seus dados</p>
-        <form onSubmit={createNewAppointment}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
           <input
             type="text"
             placeholder="Descrição"
             name="description"
-            value={appointmentData.description}
-            onChange={onChangeAppointment}
+            {...form.register("description", {
+                required: {
+                  value: true,
+                  message: "Esse campo é obrigatório",
+                },
+            })}
           />
           <input
             type="date"
             placeholder="Data"
             name="start"
-            value={appointmentData.start}
-            onChange={onChangeAppointment}
+            {...form.register("start", {
+                required: {
+                  value: true,
+                  message: "Esse campo é obrigatório",
+                },
+            })}
           />
           <input
             type="text"
             placeholder="Motivo da consulta"
             name="reason"
-            value={appointmentData.start}
-            onChange={onChangeAppointment}
+            {...form.register("reason", {
+                required: {
+                  value: true,
+                  message: "Esse campo é obrigatório",
+                },
+            })}
           />
-          <select name="" id="">
-            <option value="">Selecione a especialidade</option>
-            <option value="">Cardiologia</option>
-            <option value="">Dermatologia</option>
-            <option value="">Endocrinologia</option>
-            <option value="">Gastroenterologia</option>
-            <option value="">Geriatria</option>
-            <option value="">Ginecologia</option>
-            <option value="">Hematologia</option>            
-          </select>
+          <input type="text" name="specialty" {...form.register("specialty[0].coding.display", {
+                required: {
+                  value: true,
+                  message: "Esse campo é obrigatório",
+                },
+            })} />
           <select name="" id="">
             <option value="">Selecione o médico</option>
             <option value="">Dr. Fulano</option>
@@ -238,7 +263,7 @@ export default function DonorPage() {
             <option value="">Hospital São Paulo</option>
             <option value="">Hospital São Paulo</option>
             <option value="">Hospital São Paulo</option>
-          </select>    
+          </select>
           <button type="submit">Enviar</button>
         </form>
       </div>
@@ -246,6 +271,7 @@ export default function DonorPage() {
   );
 
   useEffect(() => {
+    fetchPossibleDonors();
     if (localStorage.getItem("additionalData")) {
       setFormData(JSON.parse(localStorage.getItem("additionalData")));
     }
@@ -275,7 +301,7 @@ export default function DonorPage() {
         <article className={styles.donorWrapper}>
           <div className={styles.donorData}>
             <p>Nome: {loggedUser?.resource?.name[0]?.given?.join(" ")}</p>
-            <p>Celular: {loggedUser?.resource?.telecom[0]?.value}</p>
+            <p>Celular: {loggedUser?.resource?.telecom[1]?.value}</p>
             <p>Endereço: {loggedUser?.resource?.address[0]?.line[0]}</p>
             <p>Bairro: {loggedUser?.resource?.address[0]?.district}</p>
             <p>Cidade: {loggedUser?.resource?.address[0]?.city}</p>
@@ -313,19 +339,29 @@ export default function DonorPage() {
               agendar consulta
             </button>
             <button className={styles.btn} onClick={() => handleLogout()}>
-              <Icon
-                icon="material-symbols:logout"
-                width="20"
-                height="20"
-              />
+              <Icon icon="material-symbols:logout" width="20" height="20" />
               logout
             </button>
           </div>
         </div>
       </section>
 
+      <section className="flex align-center justify-center">
+        {possibleDonors && (
+          <p className="flex items-center justify-center p-4 gap-4">
+            <AiTwotoneAlert color="red" size={30} /> {possibleDonors.length}{" "}
+            possíveis doadores, aguarde os próximos passos!
+          </p>
+        )}
+      </section>
+
       <section className={`${styles.doadorSteps} p-4`}>
-        <Progress aria-label="Loading..." value={10} className="w-full" color="success"/>
+        <Progress
+          aria-label="Loading..."
+          value={10}
+          className="w-full"
+          color="success"
+        />
         <div className={styles.doadorStepsContainer}>
           <div className={styles.step}>
             <i>

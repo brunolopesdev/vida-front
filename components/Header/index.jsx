@@ -90,13 +90,13 @@ export const Header = () => {
           />
         </div>
 
-        {isMobile ? mobileMenu : deskMenu}
-
         <div className={styles.userInfo}>
           <p>
             <a href="/login">Entrar</a>
           </p>
         </div>
+
+        {isMobile ? mobileMenu : deskMenu}
       </header>
     );
   }
@@ -114,8 +114,6 @@ export const Header = () => {
           />
         </div>
 
-        {isMobile ? mobileMenu : deskMenu}
-
         <div className={styles.userInfo}>
           <p>
             <a href="/paciente">
@@ -129,6 +127,8 @@ export const Header = () => {
             </a>
           </p>
         </div>
+
+        {isMobile ? mobileMenu : deskMenu}
       </header>
     );
   }
