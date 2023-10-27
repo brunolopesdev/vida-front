@@ -18,7 +18,7 @@ export default function PacienteNovo() {
   async function onSubmit(data) {
     setIsSaving(true);
     try {
-      await axios.post("http://localhost:4000/patients", {
+      await axios.post("https://vida-api.vercel.app/patients", {
         resourceType: "Patient",
         text: {
           status: "generated",

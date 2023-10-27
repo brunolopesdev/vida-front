@@ -35,7 +35,7 @@ export default function DonorPage() {
 
   const fetchPossibleDonors = async () => {
     try {
-      const { data } = await axios.get("http://localhost:4000/person");
+      const { data } = await axios.get("https://vida-api.vercel.app/person");
 
       setPossibleDonors(data);
       console.log("data222", data);
@@ -49,7 +49,7 @@ export default function DonorPage() {
   console.log('form', form.getValues())
   async function onSubmit(data) {
     try {
-      await axios.post("http://localhost:4000/appointment", {
+      await axios.post("https://vida-api.vercel.app/appointment", {
         resourceType: "Appointment",
         status: "booked",
         specialty: [

@@ -18,7 +18,7 @@ export default function DoadorNovo() {
   async function onSubmit2(data) {
     setIsSaving(true);
     try {
-      await axios.post("http://localhost:4000/person", {
+      await axios.post("https://vida-api.vercel.app/person", {
         resourceType: "Person",
         text: {
           status: "generated",
